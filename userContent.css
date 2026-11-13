@@ -1,0 +1,17 @@
+/* 
+   Keeps about:blank / about:newtab from flashing the wrong color behind the
+   light browser chrome. Colors are the raw Gruvbox values (userContent.css runs
+   in the page, outside the chrome where --gb-* / --lw-* are defined).
+*/
+
+@-moz-document url("about:blank"), url("about:newtab") {
+  :root {
+    color-scheme: light !important;
+  }
+
+  html,
+  body {
+    background-color: #f2e5bc !important; /* gruvbox bg0_soft */
+    color: #3c3836 !important;            /* gruvbox fg1      */
+  }
+}

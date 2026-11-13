@@ -1,0 +1,482 @@
+/* 
+   Gruvbox light palette, every corner square. 
+   The horizontal tab strip is hidden 
+   Sidebery sidebar extension draws the tabs instead. 
+*/
+
+:root {
+  /* Color */
+  --gb-bg0-hard:  #f9f5d7;
+  --gb-bg0:       #fbf1c7;
+  --gb-bg0-soft:  #f2e5bc;
+  --gb-bg1:       #ebdbb2;
+  --gb-bg2:       #d5c4a1;
+  --gb-bg3:       #bdae93;
+  --gb-fg0:       #282828;
+  --gb-fg1:       #3c3836;
+  --gb-fg2:       #504945;
+  --gb-fg3:       #665c54;
+  --gb-fg4:       #7c6f64;
+  --gb-gray:      #928374;
+  --gb-red:       #9d0006;
+  --gb-green:     #79740e;
+  --gb-yellow:    #b57614;
+  --gb-orange:    #d65d0e;
+  --gb-blue:      #076678;
+  --gb-purple:    #8f3f71;
+  --gb-aqua:      #427b58;
+
+  /* Theme aliases */
+  --lw-bg-deep:    var(--gb-bg1);       /* window, urlbar field             */
+  --lw-bg:         var(--gb-bg0-soft);  /* toolbar / chrome background      */
+  --lw-bg-elev:    var(--gb-bg0);       /* selected tab, menus, panels      */
+  --lw-hover:      #eadcb4;             /* hover                       */
+  --lw-border:     var(--gb-bg2);       /* outlines and separators          */
+  --lw-text:       var(--gb-fg1);       /* primary text                     */
+  --lw-dim:        var(--gb-fg4);       /* secondary text / placeholders    */
+  --lw-accent:     var(--gb-yellow);    /* focus rings, selected tab stripe */
+  --lw-accent-bg:  rgba(181, 118, 20, 0.16);
+  --lw-link:       var(--gb-blue);      /* URLs and links                   */
+
+  /* Boxy geometry tokens used by Firefox internals. */
+  --tab-border-radius: 0 !important;
+  --toolbarbutton-border-radius: 0 !important;
+  --urlbar-border-radius: 0 !important;
+
+  /* Design-system radii, so even widgets inside shadow trees come out square. */
+  --border-radius-circle: 0 !important;
+  --border-radius-xsmall: 0 !important;
+  --border-radius-small: 0 !important;
+  --border-radius-medium: 0 !important;
+  --border-radius-large: 0 !important;
+  --border-radius-xlarge: 0 !important;
+  --button-border-radius: 0 !important;
+  --input-border-radius: 0 !important;
+  --input-search-border-radius: 0 !important;
+  --popup-border-radius: 0 !important;
+  --dialog-border-radius: 0 !important;
+  --menuitem-border-radius: 0 !important;
+  --card-border-radius: 0 !important;
+  --card-border-radius-compact: 0 !important;
+  --urlbarview-border-radius: 0 !important;
+}
+
+/* Boxy geometry: square every corner in the chrome
+   (content pages are untouched; userChrome.css only applies to the browser UI) */
+* {
+  border-radius: 0 !important;
+}
+
+/* Shadow-DOM widgets cannot be reached by the rule above and paint their frame
+   from these tokens instead: popups use --panel-border-radius /
+   --menuitem-border-radius, panel-list (search-engine switcher, urlbar result
+   menu) uses its own --panel-list-* ones. */
+menupopup,
+panel,
+.panel-arrowcontent {
+  --panel-border-radius: 0 !important;
+  --panel-menuitem-border-radius: 0 !important;
+  --menuitem-border-radius: 0 !important;
+}
+
+panel-list {
+  --panel-list-background-color: var(--lw-bg-elev) !important;
+  --panel-list-text-color: var(--lw-text) !important;
+  --panel-list-border-color: var(--lw-border) !important;
+  --panel-list-border-radius: 0 !important;
+}
+
+/*    Global theme variables (Firefox / LibreWolf, old + design-token names) */
+:root,
+:root[privatebrowsingmode="temporary"] {
+  color-scheme: light !important;
+
+  --lwt-accent-color: var(--lw-bg) !important;
+  --lwt-accent-color-inactive: var(--lw-bg) !important;
+  --lwt-text-color: var(--lw-text) !important;
+  --lwt-toolbarbutton-icon-fill: var(--lw-text) !important;
+  --lwt-toolbarbutton-hover-background: var(--lw-hover) !important;
+  --lwt-toolbarbutton-active-background: var(--lw-accent-bg) !important;
+
+  /* Toolbars */
+  --toolbar-bgcolor: var(--lw-bg) !important;
+  --toolbar-color: var(--lw-text) !important;
+  --toolbar-background-color: var(--lw-bg) !important;
+  --toolbar-text-color: var(--lw-text) !important;
+  --toolbox-background-color: var(--lw-bg) !important;
+  --toolbox-background-color-inactive: var(--lw-bg) !important;
+  --toolbox-text-color: var(--lw-text) !important;
+  --toolbox-text-color-inactive: var(--lw-text) !important;
+
+  /* Address bar field */
+  --toolbar-field-background-color: var(--lw-bg-deep) !important;
+  --toolbar-field-background-color-focus: var(--lw-bg-elev) !important;
+  --toolbar-field-color: var(--lw-text) !important;
+  --toolbar-field-focus-color: var(--lw-text) !important;
+  --toolbar-field-border-color: var(--lw-border) !important;
+  --toolbar-field-focus-border-color: var(--lw-accent) !important;
+  --urlbar-background-color: var(--lw-bg-deep) !important;
+  --urlbar-background-color-focus: var(--lw-bg-elev) !important;
+
+  /* Tabs */
+  --tab-selected-bgcolor: var(--lw-bg-elev) !important;
+  --tab-selected-textcolor: var(--lw-text) !important;
+  --tab-selected-outline-color: transparent !important;
+  --tab-hover-background-color: var(--lw-hover) !important;
+  --tab-loading-fill: var(--lw-accent) !important;
+  --tab-background-color-selected: var(--lw-bg-elev) !important;
+  --tab-background-color-hover: var(--lw-hover) !important;
+  --tab-text-color-selected: var(--lw-text) !important;
+  --tab-attention-dot-color: var(--gb-red) !important;
+
+  /* Panels, menus and popups */
+  --arrowpanel-background: var(--lw-bg-elev) !important;
+  --arrowpanel-color: var(--lw-text) !important;
+  --arrowpanel-border-color: var(--lw-border) !important;
+  --panel-background-color: var(--lw-bg-elev) !important;
+  --panel-text-color: var(--lw-text) !important;
+  --panel-border-color: var(--lw-border) !important;
+  --panel-separator-color: var(--lw-border) !important;
+  --panel-item-hover-bgcolor: var(--lw-hover) !important;
+  --panel-item-active-bgcolor: var(--lw-accent-bg) !important;
+  --panel-menuitem-border-radius: 0 !important;
+  --background-color-box: var(--lw-bg-elev) !important;
+
+  /* Buttons */
+  --button-bgcolor: transparent !important;
+  --button-hover-bgcolor: var(--lw-hover) !important;
+  --button-active-bgcolor: var(--lw-accent-bg) !important;
+  --button-color: var(--lw-text) !important;
+  --button-background-color: transparent !important;
+  --button-background-color-hover: var(--lw-hover) !important;
+  --button-background-color-active: var(--lw-accent-bg) !important;
+  --toolbarbutton-background-color-hover: var(--lw-hover) !important;
+  --toolbarbutton-background-color-active: var(--lw-accent-bg) !important;
+
+  --chrome-content-separator-color: var(--lw-border) !important;
+  --tabpanel-background-color: var(--lw-bg) !important;
+  --background-color-canvas: var(--lw-bg) !important;
+  --toolbar-color-scheme: light !important;
+
+  /* Sidebar */
+  --sidebar-background-color: var(--lw-bg) !important;
+  --sidebar-text-color: var(--lw-text) !important;
+  --sidebar-border-color: var(--lw-border) !important;
+
+  /* Autocomplete */
+  --autocomplete-popup-background: var(--lw-bg-elev) !important;
+  --autocomplete-popup-color: var(--lw-text) !important;
+  --autocomplete-popup-highlight-background: var(--lw-accent-bg) !important;
+  --autocomplete-popup-highlight-color: var(--lw-text) !important;
+
+  /* Links / focus */
+  --link-color: var(--lw-link) !important;
+  --focus-outline-color: var(--lw-accent) !important;
+}
+
+/* Hide the horizontal tab strip (Sidebery provides the tabs) */
+/* Sidebery lives in the sidebar and never uses the browser's tab strip, so
+   hiding it leaves a single, boxy address-bar row. To get the normal tab strip
+   back, delete this whole section (up to "Window, toolbars") and restart.
+
+   Window buttons: minimize / maximize / close normally live inside
+   #TabsToolbar, so hiding it would remove them. The nav-bar ships its own copy,
+   which Firefox only reveals in "vertical tabs" mode (when #navigator-toolbox
+   gets [tabs-hidden]). This theme hides the strip with CSS only, so that
+   attribute is never set — reveal the copy here instead. The visible menu bar
+   already carries its own buttons, so the nav-bar copy stays hidden then.
+
+   Dragging needs no extra rules: the UA stylesheet makes every <toolbar> a drag
+   region and excludes buttons, items and inputs, so the empty nav-bar still
+   moves the window once the tab strip is gone. */
+#navigator-toolbox > #TabsToolbar {
+  display: none !important;
+}
+
+:root[customtitlebar]:not([inFullscreen]) #navigator-toolbox > #nav-bar > .titlebar-buttonbox-container {
+  display: flex !important;
+}
+
+#toolbar-menubar[autohide]:not([inactive]) ~ #nav-bar > .titlebar-buttonbox-container,
+#toolbar-menubar:not([autohide], [collapsed]) ~ #nav-bar > .titlebar-buttonbox-container {
+  display: none !important;
+}
+
+/* The temporarily shown menu bar (Alt) should match the nav-bar height. */
+:root[customtitlebar] #navigator-toolbox > #toolbar-menubar[autohide]:not([inactive]) {
+  min-height: calc(var(--urlbar-height, 32px) + 2 * var(--urlbar-padding-block, 4px)) !important;
+}
+
+/* Window, toolbars and tab strip */
+#navigator-toolbox {
+  background-color: var(--lw-bg) !important;
+  background-image: none !important;
+  color: var(--lw-text) !important;
+  border-bottom: 1px solid var(--lw-border) !important;
+}
+
+#TabsToolbar,
+#nav-bar,
+#PersonalToolbar,
+#toolbar-menubar {
+  background-color: transparent !important;
+  background-image: none !important;
+  color: var(--lw-text) !important;
+}
+
+#nav-bar {
+  border-top: none !important;
+}
+
+#PersonalToolbar {
+  border-top: 1px solid var(--lw-border) !important;
+}
+
+/* Tabs: square and quiet until hovered/selected (only visible if the tab strip
+   is re-enabled above; Sidebery draws its own tabs). */
+.tabbrowser-tab {
+  --tab-border-radius: 0;
+  color: var(--lw-dim) !important;
+}
+
+.tabbrowser-tab .tab-background {
+  border-radius: 0 !important;
+  margin-block: 4px !important;
+  transition: background-color 120ms ease-in-out;
+}
+
+.tabbrowser-tab:hover .tab-background:not([selected]) {
+  background-color: var(--lw-hover) !important;
+}
+
+.tabbrowser-tab[selected] {
+  color: var(--lw-text) !important;
+}
+
+.tabbrowser-tab[selected] .tab-background {
+  background-color: var(--lw-bg-elev) !important;
+  box-shadow: inset 0 0 0 1px var(--lw-border),
+              inset 0 2px 0 var(--lw-accent) !important;
+}
+
+.tabbrowser-tab .tab-close-button:hover {
+  background-color: var(--lw-hover) !important;
+  border-radius: 0 !important;
+}
+
+#tabs-newtab-button:hover,
+#new-tab-button:hover,
+#alltabs-button:hover {
+  background-color: var(--lw-hover) !important;
+  border-radius: 0 !important;
+}
+
+/* Tab separators look noisy next to Sidebery's list */
+.tabbrowser-tab::after,
+.tabbrowser-tab::before {
+  border-inline-start: none !important;
+}
+
+/*    Address bar */
+/* Firefox declares these tokens on the urlbar host itself (and builds its
+   internals at runtime), so they have to be overridden here, not only on :root. */
+#urlbar,
+#searchbar {
+  --toolbar-field-border-color: var(--lw-border) !important;
+  --toolbar-field-border-color-focus: var(--lw-accent) !important;
+  --urlbar-input-container-border: 1px solid var(--lw-border) !important;
+  --urlbar-background-border: 1px solid var(--lw-border) !important;
+  --urlbar-background-border-focused: 1px solid var(--lw-accent) !important;
+  --urlbar-background-border-open: 1px solid var(--lw-border) !important;
+  --urlbar-background-outline-focused: none !important;
+  --urlbar-background-box-shadow-open: none !important;
+  --urlbar-background-border-radius: 0 !important;
+
+  /* Results view. Nova paints the selected row blue with white text and the
+     hover row in a neutral gray, so retint both from the Gruvbox palette. */
+  --urlbarview-background-color-hover: var(--lw-hover) !important;
+  --urlbarview-background-color-selected: var(--lw-accent-bg) !important;
+  --urlbarview-text-color-hover: var(--lw-text) !important;
+  --urlbarview-text-color-selected: var(--lw-text) !important;
+  --urlbarview-text-color-secondary: var(--lw-dim) !important;
+  --urlbarview-text-color-action: var(--lw-link) !important;
+  --urlbarview-separator-color: var(--lw-border) !important;
+
+  color: var(--lw-text) !important;
+}
+
+.urlbar-background {
+  background-color: var(--lw-bg-deep) !important;
+  border-color: var(--lw-border) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.urlbar:is([focused], [open], [popover-open]) > .urlbar-background {
+  background-color: var(--lw-bg-elev) !important;
+  border-color: var(--lw-accent) !important;
+  box-shadow: inset 0 0 0 1px var(--lw-accent) !important;
+}
+
+#searchbar {
+  background-color: var(--lw-bg-deep) !important;
+  border: 1px solid var(--lw-border) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+#searchbar:focus-within {
+  background-color: var(--lw-bg-elev) !important;
+  border-color: var(--lw-accent) !important;
+}
+
+#urlbar,
+#urlbar-input,
+.urlbar-input,
+#searchbar input {
+  color: var(--lw-text) !important;
+}
+
+#urlbar-input::placeholder,
+.urlbar-input::placeholder {
+  color: var(--lw-dim) !important;
+  opacity: 1 !important;
+}
+
+#urlbar-results,
+.urlbarView-row {
+  color: var(--lw-text) !important;
+}
+
+.urlbarView-row[selected] {
+  background-color: var(--lw-accent-bg) !important;
+  color: var(--lw-text) !important;
+}
+
+.urlbarView-row:hover:not([selected]) {
+  background-color: var(--lw-hover) !important;
+  color: var(--lw-text) !important;
+}
+
+.urlbarView-url {
+  color: var(--lw-link) !important;
+}
+
+.urlbarView-title-separator {
+  color: var(--lw-dim) !important;
+}
+
+/* Identity / permission icons */
+#identity-box,
+#trust-icon-container,
+#tracking-protection-icon-container,
+#page-action-buttons > toolbarbutton {
+  color: var(--lw-text) !important;
+}
+
+#identity-box:hover,
+#trust-icon-container:hover,
+#tracking-protection-icon-container:hover,
+#page-action-buttons > toolbarbutton:hover {
+  background-color: var(--lw-hover) !important;
+  border-radius: 0 !important;
+}
+
+/* Menus, panels and popups */
+menupopup,
+panel,
+.panel-arrowcontent {
+  /* Popups force `color-scheme: light dark` themselves; keep them light so
+     light-dark() tokens resolve to the warm palette. */
+  color-scheme: light !important;
+
+  /* These tokens are declared on the popup element by Firefox, so they have to
+     be overridden here as well as on :root above. */
+  --panel-background-color: var(--lw-bg-elev) !important;
+  --panel-text-color: var(--lw-text) !important;
+  --panel-border-color: var(--lw-border) !important;
+  --panel-separator-color: var(--lw-border) !important;
+  --panel-icon-fill: var(--lw-text) !important;
+
+  background-color: var(--lw-bg-elev) !important;
+  color: var(--lw-text) !important;
+  border-color: var(--lw-border) !important;
+}
+
+menuitem,
+menu {
+  color: var(--lw-text) !important;
+  border-radius: 0 !important;
+}
+
+menuitem:hover,
+menuitem[_moz-menuactive="true"],
+menu:hover,
+menu[_moz-menuactive="true"] {
+  background-color: var(--lw-hover) !important;
+  color: var(--lw-text) !important;
+}
+
+menuitem[disabled="true"],
+menu[disabled="true"] {
+  color: var(--lw-dim) !important;
+  opacity: 0.6 !important;
+}
+
+menuseparator {
+  border-top: 1px solid var(--lw-border) !important;
+  margin: 4px 6px !important;
+}
+
+/* Bookmarks, sidebar, find bar and misc chrome */
+toolbarbutton.bookmark-item {
+  color: var(--lw-text) !important;
+  border-radius: 0 !important;
+}
+
+toolbarbutton.bookmark-item:hover {
+  background-color: var(--lw-hover) !important;
+}
+
+#sidebar-box,
+#sidebar-header {
+  background-color: var(--lw-bg) !important;
+  color: var(--lw-text) !important;
+  border-color: var(--lw-border) !important;
+}
+
+#sidebar-splitter {
+  background-color: var(--lw-border) !important;
+}
+
+findbar {
+  background-color: var(--lw-bg-elev) !important;
+  color: var(--lw-text) !important;
+  border-top: 1px solid var(--lw-border) !important;
+}
+
+.findbar-textbox {
+  background-color: var(--lw-bg-deep) !important;
+  color: var(--lw-text) !important;
+  border: 1px solid var(--lw-border) !important;
+  border-radius: 0 !important;
+}
+
+notification-message,
+.notificationbox-stack {
+  background-color: var(--lw-bg-elev) !important;
+  color: var(--lw-text) !important;
+}
+
+/* Link status popup (bottom-left) */
+#statuspanel-label {
+  background-color: var(--lw-bg-elev) !important;
+  color: var(--lw-text) !important;
+  border: 1px solid var(--lw-border) !important;
+  border-radius: 0 !important;
+}
+
+/* Scrollbars inside chrome (sidebar, panels, etc.) */
+* {
+  scrollbar-color: var(--lw-border) var(--lw-bg) !important;
+}
